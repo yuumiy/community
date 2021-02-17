@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
+//访问路劲的时候前面还要加上community
 public class HomeController {
 
     @Autowired
