@@ -53,6 +53,7 @@ public class LoginController implements CommunityConstant {
 
     @RequestMapping(path = "/register", method = RequestMethod.POST)
     //这里跳转的是templates下的内容,这里用return来获取。input的name属性和bean的变量名对应才能成功取到值
+    //springmvc user封装到model里，页面直接可以用。confirmpassword从request里可以取到，用param即可
     public String register(Model model, User user,String confirmPassword) {
         Map<String, Object> map = userService.register(user,confirmPassword);
         if (map == null || map.isEmpty()) {
@@ -120,6 +121,7 @@ public class LoginController implements CommunityConstant {
         Map<String, Object> map = userService.login(username, password, expiredSeconds);
         if (map.containsKey("ticket")) {
             Cookie cookie = new Cookie("ticket", map.get("ticket").toString());
+            //对community路径下都有效;设置过期时间，单位是秒
             cookie.setPath(contextPath);
             cookie.setMaxAge(expiredSeconds);
             //登录成功得到cookie，然后将cookie响应给客户端
@@ -132,10 +134,13 @@ public class LoginController implements CommunityConstant {
         }
     }
 
+    //一般跳转都是get请求，提交表单是post请求，用于区分
+    //使用@CookieValue注解，从浏览器中得到ticket
     @RequestMapping(path = "/logout", method = RequestMethod.GET)
     public String logout(@CookieValue("ticket") String ticket) {
         userService.logout(ticket);
         return "redirect:/login";
     }
+
 }
 

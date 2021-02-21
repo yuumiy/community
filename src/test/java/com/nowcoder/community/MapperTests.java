@@ -15,6 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -97,6 +98,12 @@ public class MapperTests {
         loginTicketMapper.updateStatus("abc", 1);
         loginTicket = loginTicketMapper.selectByTicket("abc");
         System.out.println(loginTicket);
+    }
+    @Test
+    public void testDate(){
+        System.out.println(new Date(System.currentTimeMillis() + 3600 * 2400 * 1000));
+        System.out.println(UUID.randomUUID().toString().replaceAll("-",""));
+        System.out.println("a.png".substring("a.png".lastIndexOf(".")));
     }
 
 }

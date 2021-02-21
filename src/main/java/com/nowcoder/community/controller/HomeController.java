@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-//访问路劲的时候前面还要加上community
+//访问路径的时候前面还要加上community
 public class HomeController {
 
     @Autowired
@@ -27,8 +27,9 @@ public class HomeController {
     private UserService userService;
 
     @RequestMapping(path = "/index", method = RequestMethod.GET)
+    //查询全部帖子，并显示在首页上
     public String getIndexPage(Model model, Page page) {
-        // 方法调用钱,SpringMVC会自动实例化Model和Page,并将Page注入Model.
+        // 方法调用前,SpringMVC会自动实例化Model和Page,并将Page注入Model.
         // 所以,在thymeleaf中可以直接访问Page对象中的数据.
         page.setRows(discussPostService.findDiscussPostRows(0));
         page.setPath("/index");

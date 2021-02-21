@@ -74,12 +74,12 @@ public class UserService implements CommunityConstant {
             return map;
         }
 
-        /*// 验证邮箱(测试时不验证邮箱)
+        // 验证邮箱
         u = userMapper.selectByEmail(user.getEmail());
         if (u != null) {
             map.put("emailMsg", "该邮箱已被注册!");
             return map;
-        }*/
+        }
 
         // 注册用户
         user.setSalt(CommunityUtil.generateUUID().substring(0, 5));  //5位的盐
@@ -149,13 +149,13 @@ public class UserService implements CommunityConstant {
             return map;
         }
 
-        // 生成登录凭证
+        // 生成登录凭证，即cookie
         LoginTicket loginTicket = new LoginTicket();
         loginTicket.setUserId(user.getId());
         loginTicket.setTicket(CommunityUtil.generateUUID());
         loginTicket.setStatus(0);
-        //ms为单位，需要乘以1000
-        loginTicket.setExpired(new Date(System.currentTimeMillis() + expiredSeconds * 1000));
+        //ms为单位，需要乘以1000L。需要转换为long型，否则会发生数据丢失
+        loginTicket.setExpired(new Date(System.currentTimeMillis() + expiredSeconds * 1000L));
         loginTicketMapper.insertLoginTicket(loginTicket);
 
         map.put("ticket", loginTicket.getTicket());
@@ -168,5 +168,47 @@ public class UserService implements CommunityConstant {
 
     public LoginTicket findLoginTicket(String ticket) {
         return loginTicketMapper.selectByTicket(ticket);
+    }
+
+    public int updateHeader(int userId, String headerUrl) {
+        return userMapper.updateHeader(userId, headerUrl);
+    }
+
+    public Map<String, Object> changePassword(User user, String oldPassword, String newPassword, String confirmPassword) {
+        Map<String, Object> map = new HashMap<>();
+        // 验证密码
+        oldPassword = CommunityUtil.md5(oldPassword + user.getSalt());
+        if (!user.getPassword().equals(oldPassword)) {
+            map.put("oldPasswordMsg", "密码不正确!");
+            return map;
+        }
+        if (StringUtils.isBlank(newPassword)) {
+            map.put("newPasswordMsg", "密码不能为空!");
+            return map;
+        }
+        if(!newPassword.equals(confirmPassword)){
+            map.put("confirmPasswordMsg", "两次输入的密码不一致!");
+            return map;
+        }
+        int id=user.getId();
+        newPassword=CommunityUtil.md5(newPassword + user.getSalt());
+        if(oldPassword.equals(newPassword)){
+            map.put("newPasswordMsg", "旧密码与新密码一致!");
+            return map;
+        }
+        userMapper.updatePassword(id,newPassword);
+        return map;
+    }
+
+    public void forgetPassword(String email) {
+        // 修改密码的链接
+        Context context = new Context();
+        context.setVariable("email", email);
+        // http://localhost:8080/community/changePassword/email
+        String url = domain + contextPath + "/changePassword/" + email;
+        context.setVariable("url", url);
+        //使用模板引擎，利用thymeleaf，将context放到/mail/activation.html文件中，然后再利用mail包发送给邮箱
+        String content = templateEngine.process("/mail/forget", context);
+        mailClient.sendMail(email, "修改密码", content);
     }
 }

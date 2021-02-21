@@ -16,4 +16,10 @@ public interface DiscussPostMapper {
     // sql在<if>里使用,则所有参数必须加别名.
     int selectDiscussPostRows(@Param("userId") int userId);
 
+    int insertDiscussPost(DiscussPost discussPost);
+
+    DiscussPost selectDiscussPostById(@Param("id")int id);
+
+    int updateCommentCount(@Param("id")int id, @Param("commentCount")int commentCount);
+
 }
