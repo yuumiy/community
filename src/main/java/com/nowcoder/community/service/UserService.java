@@ -211,4 +211,8 @@ public class UserService implements CommunityConstant {
         String content = templateEngine.process("/mail/forget", context);
         mailClient.sendMail(email, "修改密码", content);
     }
+
+    public User findUserByName(String username) {
+        return userMapper.selectByName(username);
+    }
 }

@@ -31,7 +31,7 @@ public class DiscussPostService {
             throw new IllegalArgumentException("参数不能为空!");
         }
 
-        // 转义HTML标记,不会将标签识别出来
+        // 转义HTML标记,不会将标签识别出来。过滤标签
         post.setTitle(HtmlUtils.htmlEscape(post.getTitle()));
         post.setContent(HtmlUtils.htmlEscape(post.getContent()));
         // 过滤敏感词
