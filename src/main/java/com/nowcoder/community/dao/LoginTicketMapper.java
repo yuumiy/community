@@ -4,6 +4,7 @@ import com.nowcoder.community.entity.LoginTicket;
 import org.apache.ibatis.annotations.*;
 
 @Mapper
+@Deprecated  //这个注解的意思是这个mapper不推荐使用，因为重构代码改成redis了
 public interface LoginTicketMapper {
 
     @Insert({
