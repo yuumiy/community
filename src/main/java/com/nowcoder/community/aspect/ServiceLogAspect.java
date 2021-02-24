@@ -16,7 +16,7 @@ import java.util.Date;
 
 @Component
 @Aspect
-//这是统一日志处理的类
+//这是统一日志处理的类,AOP切面技术
 public class ServiceLogAspect {
 
     private static final Logger logger = LoggerFactory.getLogger(ServiceLogAspect.class);
@@ -30,6 +30,9 @@ public class ServiceLogAspect {
     public void before(JoinPoint joinPoint) {
         // 用户[1.2.3.4],在[xxx],访问了[com.nowcoder.community.service.xxx()].
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        if (attributes == null) {
+            return;
+        }
         HttpServletRequest request = attributes.getRequest();
         String ip = request.getRemoteHost();
         String now = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());

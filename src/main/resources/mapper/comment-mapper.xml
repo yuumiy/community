@@ -12,7 +12,7 @@
         user_id, entity_type, entity_id, target_id, content, status, create_time
     </sql>
 
-    <!--升序排列，先评论的在前面-->
+    <!--升序排列，先评论的在前面。最新评论在末页-->
     <select id="selectCommentsByEntity" resultType="Comment">
         select <include refid="selectFields"></include>
         from comment
@@ -35,5 +35,11 @@
         insert into comment(<include refid="insertFields"></include>)
         values(#{userId},#{entityType},#{entityId},#{targetId},#{content},#{status},#{createTime})
     </insert>
+
+    <select id="selectCommentById" resultType="Comment">
+        select <include refid="selectFields"></include>
+        from comment
+        where id=#{id}
+    </select>
 
 </mapper>

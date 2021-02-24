@@ -116,7 +116,7 @@
 				
 				<!-- 私信列表 -->
 				<ul class="list-unstyled mt-4">
-					<li class="media pb-3 pt-3 mb-2" th:each="map:${letters}">
+					<li class="media pb-3 pt-3 mb-2" th:if="${letters!=null}" th:each="map:${letters}">
 						<a th:href="@{|/user/profile/${map.fromUser.id}|}">
 							<img th:src="${map.fromUser.headerUrl}" class="mr-4 rounded-circle user-header" alt="用户头像" >
 						</a>
