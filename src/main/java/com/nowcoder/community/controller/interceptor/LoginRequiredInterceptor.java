@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Method;
 
+//对需要登录才能访问的资源进行拦截，已弃用，改为Spring Security管理
 @Component
 public class LoginRequiredInterceptor implements HandlerInterceptor {
 

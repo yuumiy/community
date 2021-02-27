@@ -25,10 +25,10 @@ public class DiscussPost {
     @Field(type = FieldType.Text, analyzer = "ik_max_word", searchAnalyzer = "ik_smart")
     private String content;
 
-    @Field(type = FieldType.Integer)
+    @Field(type = FieldType.Integer)   //0 普通 1 置顶
     private int type;
 
-    @Field(type = FieldType.Integer)
+    @Field(type = FieldType.Integer)   //0 正常 1 精华 2 拉黑
     private int status;
 
     @Field(type = FieldType.Date)
