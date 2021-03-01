@@ -244,6 +244,7 @@ public class DiscussPostController implements CommunityConstant {
     @ResponseBody
     public String setDelete(int id) {
         discussPostService.updateStatus(id, 2);
+        commentService.updateStatus(id,1);
 
         // 触发删帖事件
         Event event = new Event()

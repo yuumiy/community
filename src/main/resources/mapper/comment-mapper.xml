@@ -19,7 +19,7 @@
         where status = 0
         and entity_type = #{entityType}
         and entity_id = #{entityId}
-        order by create_time asc
+        order by create_time desc
         limit #{offset}, #{limit}
     </select>
 
@@ -56,7 +56,12 @@
         where status = 0
         and user_id=#{id}
         and entity_type=1
+        order by create_time desc
         limit #{offset}, #{limit}
     </select>
+
+    <update id="updateStatus">
+        update comment set status = #{status} where entity_id = #{entityId} and entity_type=1
+    </update>
 
 </mapper>

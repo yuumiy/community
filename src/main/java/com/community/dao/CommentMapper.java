@@ -20,4 +20,6 @@ public interface CommentMapper {
     int selectCommentCountById(@Param("id")int id);
 
     List<Comment> selectCommentsByUserId(@Param("id")int id,@Param("offset")int offset,@Param("limit")int limit);
+
+    int updateStatus(@Param("entityId")int entityId, @Param("status")int status);
 }
