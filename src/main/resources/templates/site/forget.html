@@ -1,26 +1,21 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="icon" href="https://static.nowcoder.com/images/logo_87_87.png"/>
+	<link rel="icon" th:href="@{/img/icon.png}"/>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
-	<link rel="stylesheet" href="../css/global.css" />
-	<link rel="stylesheet" href="../css/login.css" />
-	<title>牛客网-忘记密码</title>
+	<link rel="stylesheet" th:href="@{/css/global.css}" />
+	<link rel="stylesheet" th:href="@{/css/login.css}" />
+	<title>忘记密码</title>
 </head>
 <body>
 	<div class="nk-container">
 		<!-- 头部 -->
-		<header class="bg-dark sticky-top">
+		<header class="bg-dark sticky-top" th:replace="index::header">
 			<div class="container">
 				<!-- 导航 -->
 				<nav class="navbar navbar-expand-lg navbar-dark">
-					<!-- logo -->
-					<a class="navbar-brand" href="#"></a>
-					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon"></span>
-					</button>
 					<!-- 功能 -->
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						<ul class="navbar-nav mr-auto">
@@ -62,32 +57,36 @@
 		<!-- 内容 -->
 		<div class="main">
 			<div class="container pl-5 pr-5 pt-3 pb-3 mt-3 mb-3">
-				<form class="mt-5">				
+				<form class="mt-5" method="post" enctype="multipart/form-data" th:action="@{/user/changePasswordByCode}">
 					<div class="form-group row">
-						<label for="your-email" class="col-sm-2 col-form-label text-right">邮箱:</label>
+						<label for="email" class="col-sm-2 col-form-label text-right">邮箱:</label>
 						<div class="col-sm-10">
-							<input type="email" class="form-control" id="your-email" placeholder="请输入您的邮箱!" required>
-							<div class="invalid-feedback">
-								该邮箱已被注册!
+							<input type="email"
+								   th:class="|form-control ${emailMsg!=null?'is-invalid':''}|"
+								   th:value="${user!=null?user.email:''}"
+								   id="email" name="email" placeholder="请输入您的邮箱!" required>
+							<div class="invalid-feedback" th:text="${emailMsg}">
+								该邮箱已注册!
 							</div>
 						</div>
 					</div>
 					<div class="form-group row mt-4">
-						<label for="verifycode" class="col-sm-2 col-form-label text-right">验证码:</label>
+						<label for="code" class="col-sm-2 col-form-label text-right">验证码:</label>
 						<div class="col-sm-6">
-							<input type="text" class="form-control" id="verifycode" placeholder="请输入验证码!">
-							<div class="invalid-feedback">
+							<input type="text" th:class="|form-control ${codeMsg!=null?'is-invalid':''}|"
+								   id="code" name="code" placeholder="请输入验证码!">
+							<div class="invalid-feedback" th:text="${codeMsg}">
 								验证码不正确!
 							</div>
 						</div>
 						<div class="col-sm-4">
-							<a href="javascript:;" class="btn btn-info form-control">获取验证码</a>
+							<button type="button" class="btn btn-info form-control feach-btn">获取验证码</button>
 						</div>
 					</div>	
 					<div class="form-group row mt-4">
-						<label for="your-password" class="col-sm-2 col-form-label text-right">新密码:</label>
+						<label for="password" class="col-sm-2 col-form-label text-right">新密码:</label>
 						<div class="col-sm-10">
-							<input type="password" class="form-control" id="your-password" placeholder="请输入新的密码!" required>
+							<input type="password" class="form-control" id="password" name="password" placeholder="请输入新的密码!" required>
 							<div class="invalid-feedback">
 								密码长度不能小于8位!
 							</div>							
@@ -107,35 +106,13 @@
 		<footer class="bg-dark">
 			<div class="container">
 				<div class="row">
-					<!-- 二维码 -->
-					<div class="col-4 qrcode">
-						<img src="https://uploadfiles.nowcoder.com/app/app_download.png" class="img-thumbnail" style="width:136px;" />
-					</div>
-					<!-- 公司信息 -->
+					<!-- 信息 -->
 					<div class="col-8 detail-info">
 						<div class="row">
 							<div class="col">
 								<ul class="nav">
 									<li class="nav-item">
-										<a class="nav-link text-light" href="#">关于我们</a>
-									</li>
-									<li class="nav-item">
-										<a class="nav-link text-light" href="#">加入我们</a>
-									</li>
-									<li class="nav-item">
-										<a class="nav-link text-light" href="#">意见反馈</a>
-									</li>
-									<li class="nav-item">
-										<a class="nav-link text-light" href="#">企业服务</a>
-									</li>
-									<li class="nav-item">
-										<a class="nav-link text-light" href="#">联系我们</a>
-									</li>
-									<li class="nav-item">
-										<a class="nav-link text-light" href="#">免责声明</a>
-									</li>
-									<li class="nav-item">
-										<a class="nav-link text-light" href="#">友情链接</a>
+										<a class="nav-link text-light" href="https://github.com/David6060">GitHub</a>
 									</li>
 								</ul>
 							</div>
@@ -144,18 +121,10 @@
 							<div class="col">
 								<ul class="nav btn-group-vertical company-info">
 									<li class="nav-item text-white-50">
-										公司地址：北京市朝阳区大屯路东金泉时代3-2708北京牛客科技有限公司
+										联系方式：zhong_dawei@foxmail.com
 									</li>
 									<li class="nav-item text-white-50">
-										联系方式：010-60728802(电话)&nbsp;&nbsp;&nbsp;&nbsp;admin@nowcoder.com
-									</li>
-									<li class="nav-item text-white-50">
-										牛客科技©2018 All rights reserved
-									</li>
-									<li class="nav-item text-white-50">
-										京ICP备14055008号-4 &nbsp;&nbsp;&nbsp;&nbsp;
-										<img src="http://static.nowcoder.com/company/images/res/ghs.png" style="width:18px;" />
-										京公网安备 11010502036488号
+										Community ©2021 All rights reserved
 									</li>
 								</ul>
 							</div>
@@ -169,6 +138,7 @@
 	<script src="https://s3.pstatp.com/cdn/expire-1-M/jquery/3.3.1/jquery.min.js" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
-	<script src="../js/global.js"></script>
+	<script th:src="@{/js/global.js}"></script>
+	<script th:src="@{/js/forget.js}"></script>
 </body>
 </html>

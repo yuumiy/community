@@ -2,17 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <link rel="icon" href="https://static.nowcoder.com/images/logo_87_87.png"/>
-    <title>牛客网-忘记密码</title>
+    <title>忘记密码</title>
 </head>
 <body>
 	<div>
 		<p>
-			<b>xxx@xxx.com</b>, 您好!
+			<b th:text="${email}">xxx@xxx.com</b>, 您好!
 		</p>
 		<p>
-			您正在找回牛客账号的密码, 本次操作的验证码为 <b>u5s6dt</b> , 
-			有效时间5分钟, 请您及时进行操作!
+			您正在找回Community的密码, 本次操作的验证码为 <b th:text="${text}">u5s6dt</b> ,
+			有效时间10分钟, 请您及时进行操作!
 		</p>
 	</div>
 </body>

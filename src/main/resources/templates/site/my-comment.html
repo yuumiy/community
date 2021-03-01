@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="icon" th:href="@{/img/icon.png}"/>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
+	<link rel="stylesheet" th:href="@{/css/global.css}" />
+	<title>我的评论</title>
+</head>
+<body>
+	<div class="nk-container">
+		<!-- 头部 -->
+		<header class="bg-dark sticky-top" th:replace="index::header">
+			<div class="container">
+				<!-- 导航 -->
+				<nav class="navbar navbar-expand-lg navbar-dark">
+					<!-- 功能 -->
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+						<ul class="navbar-nav mr-auto">
+							<li class="nav-item ml-3 btn-group-vertical">
+								<a class="nav-link" href="../index.html">首页</a>
+							</li>
+							<li class="nav-item ml-3 btn-group-vertical">
+								<a class="nav-link position-relative" href="letter.html">消息<span class="badge badge-danger">12</span></a>
+							</li>
+							<li class="nav-item ml-3 btn-group-vertical">
+								<a class="nav-link" href="register.html">注册</a>
+							</li>
+							<li class="nav-item ml-3 btn-group-vertical">
+								<a class="nav-link" href="login.html">登录</a>
+							</li>
+							<li class="nav-item ml-3 btn-group-vertical dropdown">
+								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									<img src="http://images.nowcoder.com/head/1t.png" class="rounded-circle" style="width:30px;"/>
+								</a>
+								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<a class="dropdown-item text-center" href="profile.html">个人主页</a>
+									<a class="dropdown-item text-center" href="setting.html">账号设置</a>
+									<a class="dropdown-item text-center" href="login.html">退出登录</a>
+									<div class="dropdown-divider"></div>
+									<span class="dropdown-item text-center text-secondary">nowcoder</span>
+								</div>
+							</li>
+						</ul>
+						<!-- 搜索 -->
+						<form class="form-inline my-2 my-lg-0" action="search.html">
+							<input class="form-control mr-sm-2" type="search" aria-label="Search" />
+							<button class="btn btn-outline-light my-2 my-sm-0" type="submit">搜索</button>
+						</form>
+					</div>
+				</nav>
+			</div>
+		</header>
+
+		<!-- 内容 -->
+		<div class="main">
+			<div class="container">
+				<!-- 选项 -->
+				<div class="position-relative">
+					<ul class="nav nav-tabs">
+						<li class="nav-item">
+							<a th:class="|nav-link ${infoMode==0?'active':''}|" th:href="@{|/user/profile/${user.id}|}">个人信息</a>
+						</li>
+						<li class="nav-item">
+							<a th:class="|nav-link ${infoMode==1?'active':''}|" th:href="@{|/user/mypost/${user.id}|}">我的帖子</a>
+						</li>
+						<li class="nav-item">
+							<a th:class="|nav-link ${infoMode==2?'active':''}|" th:href="@{|/user/mycomment/${user.id}|}">我的评论</a>
+						</li>
+					</ul>
+					<a th:href="@{|/user/profile/${user.id}|}" class="text-muted position-absolute rt-0">返回个人主页&gt;</a>
+				</div>
+				<!-- 我的评论 -->
+				<div class="mt-4">
+					<h6><b class="square"></b> 评论的帖子(<i th:text="${commentCount}"></i>)</h6>
+					<ul class="list-unstyled mt-4 pl-3 pr-3">
+						<li class="border-bottom pb-3 mt-4" th:each="map:${comments}">
+							<div class="font-size-16 text-info">
+								<a th:href="@{|/discuss/detail/${map.comment.entityId}|}" class="text-info"
+								   th:utext="${map.discussPostTitle}"></a>
+							</div>
+							<div class="mt-1 font-size-14" th:utext="${map.comment.content}"></div>
+							<div class="text-right font-size-12 text-muted">
+								评论于 <b th:text="${#dates.format(map.comment.createTime, 'yyyy-MM-dd HH:mm:ss')}"></b>
+							</div>
+						</li>
+					</ul>
+					<!-- 分页 -->
+					<nav class="mt-5" th:replace="index::pagination"></nav>
+				</div>
+			</div>
+		</div>
+
+		<!-- 尾部 -->
+		<footer class="bg-dark">
+			<div class="container">
+				<div class="row">
+					<!-- 信息 -->
+					<div class="col-8 detail-info">
+						<div class="row">
+							<div class="col">
+								<ul class="nav">
+									<li class="nav-item">
+										<a class="nav-link text-light" href="https://github.com/David6060">GitHub</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col">
+								<ul class="nav btn-group-vertical company-info">
+									<li class="nav-item text-white-50">
+										联系方式：zhong_dawei@foxmail.com
+									</li>
+									<li class="nav-item text-white-50">
+										Community ©2021 All rights reserved
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</div>
+
+	<script src="https://s3.pstatp.com/cdn/expire-1-M/jquery/3.3.1/jquery.min.js" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
+	<script th:src="@{/js/global.js}"></script>
+</body>
+</html>

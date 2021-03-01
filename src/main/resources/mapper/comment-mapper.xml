@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.nowcoder.community.dao.CommentMapper">
+<mapper namespace="com.community.dao.CommentMapper">
 
     <sql id="selectFields">
         id, user_id, entity_type, entity_id, target_id, content, status, create_time
@@ -40,6 +40,23 @@
         select <include refid="selectFields"></include>
         from comment
         where id=#{id}
+    </select>
+
+    <select id="selectCommentCountById" resultType="int">
+        select count(id)
+        from comment
+        where status = 0
+        and user_id = #{id}
+        and entity_type=1
+    </select>
+
+    <select id="selectCommentsByUserId" resultType="Comment">
+        select <include refid="selectFields"></include>
+        from comment
+        where status = 0
+        and user_id=#{id}
+        and entity_type=1
+        limit #{offset}, #{limit}
     </select>
 
 </mapper>

@@ -14,7 +14,7 @@ function publish() {
 
     // 获取标题和内容
     var title = $("#recipient-name").val();
-    var content = $("#message-text").val();
+    var content = $("#message-text").val().replace(/\r\n/g, '<br/>').replace(/\n/g, '<br/>').replace(/\s/g, ' ');
     // 发送异步请求(POST)
     $.post(
         CONTEXT_PATH + "/discuss/add",
