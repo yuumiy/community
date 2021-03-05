@@ -49,4 +49,10 @@ public class CommunityUtil {
         map.put("age", 25);
         System.out.println(getJSONString(0, "ok", map));
     }
+    public int a(int a){
+        return 0;
+    }
+    public void a(int a,int b){
+
+    }
 }

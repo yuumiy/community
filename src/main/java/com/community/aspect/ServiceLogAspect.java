@@ -16,7 +16,7 @@ import java.util.Date;
 
 @Component
 @Aspect
-//这是统一日志处理的类,利用AOP切面技术，在访问service方法时会执行pointcut
+//这是统一日志处理的类,利用AOP切面技术，在访问service方法时会执行pointcut。定义了一个切面类
 public class ServiceLogAspect {
 
     private static final Logger logger = LoggerFactory.getLogger(ServiceLogAspect.class);

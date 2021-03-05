@@ -215,7 +215,7 @@ public class UserController implements CommunityConstant {
         }
 
 
-        if (StringUtils.isBlank(kaptcha) || StringUtils.isBlank(code) || !kaptcha.equalsIgnoreCase(code)) {
+        if (StringUtils.isBlank(kaptcha) || StringUtils.isBlank(code) || !kaptcha.equals(code)) {
             model.addAttribute("codeMsg", "验证码不正确!");
             return "/site/forget";
         }
