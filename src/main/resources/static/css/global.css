@@ -20,14 +20,6 @@ body {
 	padding: 0;
 }
 
-header .navbar-brand {
-	background: url('http://static.nowcoder.com/images/res/logo/logo-v3.png') no-repeat;
-	background-size: 147px 42px;
-	width: 147px;
-	height: 42px;
-	margin: 5px 15px 5px 0;
-}
-
 header .navbar {
 	padding: 5px 0;
 	font-size: 16px;

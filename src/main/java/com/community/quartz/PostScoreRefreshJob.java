@@ -35,15 +35,15 @@ public class PostScoreRefreshJob implements Job, CommunityConstant {
     @Autowired
     private ElasticsearchService elasticsearchService;
 
-    // 牛客纪元
+    // Community纪元
     private static final Date epoch;
 
-    //初始化牛客纪元常量
+    //初始化Community纪元常量
     static {
         try {
-            epoch = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2014-08-01 00:00:00");
+            epoch = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2021-01-07 00:00:00");
         } catch (ParseException e) {
-            throw new RuntimeException("初始化牛客纪元失败!", e);
+            throw new RuntimeException("初始化Community纪元失败!", e);
         }
     }
 

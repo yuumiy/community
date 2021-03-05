@@ -51,7 +51,7 @@ public class AlphaController {
         PrintWriter writer=null;
         try{
             writer = response.getWriter();
-            writer.write("<h1>牛客网</h1>");
+            writer.write("<h1>Community</h1>");
         } catch (IOException e) {
             e.printStackTrace();
         }finally {
