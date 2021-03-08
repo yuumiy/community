@@ -25,13 +25,13 @@
 							<a th:class="|nav-link ${infoMode==0?'active':''}|" th:href="@{|/user/profile/${user.id}|}">个人信息</a>
 						</li>
 						<li class="nav-item">
-							<a th:class="|nav-link ${infoMode==1?'active':''}|" th:href="@{|/user/mypost/${user.id}|}">我的帖子</a>
+							<a th:class="|nav-link ${infoMode==1?'active':''}|" th:href="@{|/user/mypost/${user.id}|}" th:text="${loginUser.id!=user.id?'它的帖子':'我的帖子'}">我的帖子</a>
 						</li>
 						<li class="nav-item">
-							<a th:class="|nav-link ${infoMode==2?'active':''}|" th:href="@{|/user/mycomment/${user.id}|}">我的评论</a>
+							<a th:class="|nav-link ${infoMode==2?'active':''}|" th:href="@{|/user/mycomment/${user.id}|}" th:text="${loginUser.id!=user.id?'它的评论':'我的评论'}">我的评论</a>
 						</li>
 					</ul>
-					<a th:href="@{|/user/profile/${user.id}|}" class="text-muted position-absolute rt-0">返回个人主页&gt;</a>
+					<a th:href="@{|/user/profile/${user.id}|}" class="text-muted position-absolute rt-0" th:if="${loginUser.id==user.id}">返回个人主页&gt;</a>
 				</div>
 				<!-- 我的评论 -->
 				<div class="mt-4">

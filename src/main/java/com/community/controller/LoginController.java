@@ -65,9 +65,7 @@ public class LoginController implements CommunityConstant {
         Map<String, Object> map = userService.register(user,confirmPassword);
         if (map == null || map.isEmpty()) {
             model.addAttribute("msg", "注册成功,我们已经向您的邮箱发送了一封激活邮件,请尽快激活!");
-            model.addAttribute("target", "/index");
-            model.addAttribute("destination","首页");
-            return "/site/operate-result";
+            return "/site/operate";
         } else {
             model.addAttribute("usernameMsg", map.get("usernameMsg"));
             model.addAttribute("passwordMsg", map.get("passwordMsg"));
@@ -87,8 +85,8 @@ public class LoginController implements CommunityConstant {
             model.addAttribute("destination","登录页");
         } else if (result == ACTIVATION_REPEAT) {
             model.addAttribute("msg", "无效操作,该账号已经激活过了!");
-            model.addAttribute("target", "/index");
-            model.addAttribute("destination","首页");
+            model.addAttribute("target", "/login");
+            model.addAttribute("destination","登录页");
         } else {
             model.addAttribute("msg", "激活失败,您提供的激活码不正确!");
             model.addAttribute("target", "/index");

@@ -22,10 +22,6 @@
 				<div class="jumbotron">
 					<p class="lead" th:text="${msg}">您的账号已经激活成功,可以正常使用了!</p>
 					<hr class="my-4">
-					<p>
-						系统会在 <span id="seconds" class="text-danger">8</span> 秒后自动跳转,
-						您也可以点此 <a id="target" th:href="@{${target}}" class="text-primary">链接</a>, 跳转到<b th:text="${destination}">首页</b>!
-					</p>
 				</div>
 			</div>
 		</div>
@@ -39,17 +35,6 @@
 	<script src="https://s3.pstatp.com/cdn/expire-1-M/jquery/3.3.1/jquery.min.js" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
-	<script>
-        $(function(){
-            setInterval(function(){
-                var seconds = $("#seconds").text();
-                $("#seconds").text(--seconds);
-                if(seconds == 0) {
-                    location.href = $("#target").attr("href");
-                }
-            }, 1000);
-        });
-	</script>
 
 </body>
 </html>
