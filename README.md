@@ -14,3 +14,18 @@ jdk1.8
 
 技术栈：Spring+Springmvc+Mybatis+SpringBoot+Mysql+Redis+Thymeleaf+Kafka+ElasticSearch+Quartz+Caffine
 
+#### 3、项目启动方式
+
+配置mysql、七牛云等信息。
+
+打开zookeeper、kafka、elasticsearch、redis。
+
+
+
+F:\JavaTools\redis-2.8.9>redis-server.exe redis.windows.conf
+
+F:\JavaTools\kafka_2.12-2.3.0>bin\windows\zookeeper-server-start.bat config\zookeeper.properties
+
+F:\JavaTools\kafka_2.12-2.3.0>bin\windows\kafka-server-start.bat config\server.properties
+
+打开es的bin目录，打开es.bat
