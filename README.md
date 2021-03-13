@@ -29,3 +29,5 @@ F:\JavaTools\kafka_2.12-2.3.0>bin\windows\zookeeper-server-start.bat config\zook
 F:\JavaTools\kafka_2.12-2.3.0>bin\windows\kafka-server-start.bat config\server.properties
 
 打开es的bin目录，打开es.bat
+
+开发环境使用application-dev，生产环境使用application-pro，生产环境需要重新配置文件目录地址

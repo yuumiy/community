@@ -44,7 +44,7 @@ public class DiscussPostService {
     // 帖子总数缓存
     private LoadingCache<Integer, Integer> postRowsCache;
 
-    //@PostConstruct表示Service对象创建时就会进行初始化
+    //@PostConstruct表示对象创建的时候会执行这个方法
     @PostConstruct
     public void init() {
         // 初始化帖子列表缓存

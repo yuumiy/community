@@ -10,7 +10,7 @@ import org.springframework.data.redis.serializer.RedisSerializer;
 public class RedisConfig {
 
     @Bean
-    //@Bean的作用是：在服务启动时，产生一个对象，执行该方法
+    //@Bean的作用是：在服务启动时，将RedisTemplate交给spring管理
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory factory) {
         RedisTemplate<String, Object> template = new RedisTemplate<>();
         template.setConnectionFactory(factory);
