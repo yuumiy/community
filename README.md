@@ -32,4 +32,9 @@ F:\JavaTools\kafka_2.12-2.3.0>bin\windows\kafka-server-start.bat config\server.p
 
 开发环境使用application-dev，生产环境使用application-pro，生产环境需要重新配置文件目录地址
 
-#### 4、管理员账号：system   密码：system
+#### 4、提供的账号
+普通用户：aaa  　密码:123456　　　无权限
+
+版主：bbb　　　密码:123456　　　置顶、加精权限
+
+管理员：ccc 　　密码:123456　　　置顶、加精、删帖权限

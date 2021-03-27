@@ -240,7 +240,7 @@ public class UserController implements CommunityConstant {
     public String sendCode(String email,HttpServletResponse response){
         User user=userService.findUserByEmail(email);
         if(user==null){
-            return CommunityUtil.getJSONString(1,"您输入的邮箱有误");
+            return CommunityUtil.getJSONString(1,"您输入的邮箱格式有误或未注册");
         }
         userService.sendCode(email,response);
         return CommunityUtil.getJSONString(0);

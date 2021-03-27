@@ -56,6 +56,7 @@ public class QuartzConfig {
         return factoryBean;
     }
 
+    //设置每2小时执行一次
     @Bean
     public SimpleTriggerFactoryBean postScoreRefreshTrigger(JobDetail postScoreRefreshJobDetail) {
         SimpleTriggerFactoryBean factoryBean = new SimpleTriggerFactoryBean();

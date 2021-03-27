@@ -263,9 +263,9 @@ public class UserService implements CommunityConstant {
             public String getAuthority() {
                 switch (user.getType()) {
                     case 1:
-                        return AUTHORITY_ADMIN;
-                    case 2:
                         return AUTHORITY_MODERATOR;
+                    case 2:
+                        return AUTHORITY_ADMIN;
                     default:
                         return AUTHORITY_USER;
                 }

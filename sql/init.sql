@@ -11,7 +11,7 @@
  Target Server Version : 50527
  File Encoding         : 65001
 
- Date: 20/03/2021 22:45:04
+ Date: 27/03/2021 13:50:52
 */
 
 SET NAMES utf8mb4;
@@ -27,7 +27,7 @@ CREATE TABLE `user`  (
   `password` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `salt` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `email` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `type` int(11) NULL DEFAULT NULL COMMENT '0-普通用户; 1-超级管理员; 2-版主;',
+  `type` int(11) NULL DEFAULT NULL COMMENT '0-普通用户; 1-版主; 2-管理员;',
   `status` int(11) NULL DEFAULT NULL COMMENT '0-未激活; 1-已激活;',
   `activation_code` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `header_url` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
@@ -35,12 +35,15 @@ CREATE TABLE `user`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `index_username`(`username`(20)) USING BTREE,
   INDEX `index_email`(`email`(20)) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 101 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (1, 'system', '46ba17c7484c9b9068b420ea9b7168d5', '7e41f', '115274737@qq.com', 0, 1, 'fa42e4118ad043a1b86262d0d9c7f63b', 'http://static.nowcoder.com/images/head/notify.png', '2021-03-20 22:40:35');
+INSERT INTO `user` VALUES (1, 'system', '46ba17c7484c9b9068b420ea9b7168d5', '7e41f', NULL, 2, 1, NULL, 'http://static.nowcoder.com/images/head/notify.png', '2021-03-27 13:21:21');
+INSERT INTO `user` VALUES (2, 'aaa', 'ad23a15e77ce9291cd22aa977c461fb4', '343ca', NULL, 0, 1, NULL, 'http://images.nowcoder.com/head/874t.png', '2021-03-27 13:31:39');
+INSERT INTO `user` VALUES (3, 'bbb', 'ad23a15e77ce9291cd22aa977c461fb4', '343ca', NULL, 1, 1, NULL, 'http://images.nowcoder.com/head/876t.png', '2021-03-27 13:30:11');
+INSERT INTO `user` VALUES (4, 'ccc', 'ad23a15e77ce9291cd22aa977c461fb4', '343ca', NULL, 2, 1, NULL, 'http://images.nowcoder.com/head/877t.png', '2021-03-27 13:32:00');
 
 -- ----------------------------
 -- Table structure for qrtz_triggers
