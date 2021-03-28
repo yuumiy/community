@@ -11,6 +11,7 @@ import com.community.util.CommunityUtil;
 import com.community.util.HostHolder;
 import com.community.util.RedisKeyUtil;
 import com.community.entity.*;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
@@ -53,6 +54,10 @@ public class DiscussPostController implements CommunityConstant {
         User user = hostHolder.getUser();
         if (user == null) {
             return CommunityUtil.getJSONString(403, "你还没有登录哦!");
+        }
+
+        if(StringUtils.isBlank(title) || StringUtils.isBlank(content)){
+            return CommunityUtil.getJSONString(1, "标题或内容不能为空!");
         }
 
         DiscussPost post = new DiscussPost();
