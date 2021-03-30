@@ -21,8 +21,8 @@ public class KafkaTests {
 
     @Test
     public void testKafka() {
-        kafkaProducer.sendMessage("test", "你好");
-        kafkaProducer.sendMessage("test", "在吗");
+        kafkaProducer.sendMessage("test", "Hello!");
+        kafkaProducer.sendMessage("test", "Are you there?");
 
         //生产者发消息是我们主动去调的，消费者消费消息是被动去调的。因为阻塞了10s(try catch)，所以程序10s后才结束
         try {
