@@ -225,6 +225,7 @@ public class UserService implements CommunityConstant {
             return map;
         }
         userMapper.updatePassword(id,newPassword);
+        clearCache(user.getId());
         return map;
     }
 
@@ -312,6 +313,7 @@ public class UserService implements CommunityConstant {
         password=CommunityUtil.md5(password + user.getSalt());
         userMapper.updatePassword(user.getId(),password);
         map.put("success","success");
+        clearCache(user.getId());
         return map;
     }
 }
